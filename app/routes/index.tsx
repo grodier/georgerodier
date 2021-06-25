@@ -5,8 +5,8 @@ import stylesUrl from "../styles/index.css";
 
 export let meta: MetaFunction = () => {
   return {
-    title: "Remix Starter",
-    description: "Welcome to remix!"
+    title: "George Rodier",
+    description: "Welcome to the homepage of George Rodier!",
   };
 };
 
@@ -23,11 +23,7 @@ export default function Index() {
 
   return (
     <div style={{ textAlign: "center", padding: 20 }}>
-      <h2>Welcome to Remix!</h2>
-      <p>
-        <a href="https://remix.run/dashboard/docs">Check out the docs</a> to get
-        started.
-      </p>
+      <h2>Welcome to the homepage of George Rodier!</h2>
       <p>Message from the loader: {data.message}</p>
     </div>
   );
