@@ -1,4 +1,4 @@
-import type { MetaFunction, LinksFunction, LoaderFunction } from "remix";
+import type { MetaFunction, LoaderFunction } from "remix";
 import { useRouteData } from "remix";
 import { getPostFromSlug } from "../utils/posts.server";
 import remark from "remark";
