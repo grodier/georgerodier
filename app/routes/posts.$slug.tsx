@@ -24,7 +24,7 @@ export default function Post() {
   let { title } = matter;
 
   return (
-    <div style={{ textAlign: "center", padding: 20 }}>
+    <div>
       <h1>{title}</h1>
       <article dangerouslySetInnerHTML={{ __html: content }} />
     </div>
