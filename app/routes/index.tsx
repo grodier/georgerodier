@@ -1,5 +1,5 @@
-import type { MetaFunction, LinksFunction, LoaderFunction } from "remix";
-import { useRouteData } from "remix";
+import type { MetaFunction, HeadersFunction, LoaderFunction } from "remix";
+import { useRouteData, json } from "remix";
 import { Link } from "react-router-dom";
 import { getAllPosts } from "../utils/posts.server";
 
@@ -12,7 +12,19 @@ export let meta: MetaFunction = () => {
 
 export let loader: LoaderFunction = async () => {
   let posts = await getAllPosts();
-  return { posts };
+  return json(
+    { posts },
+    {
+      headers: {
+        "Cache-Control":
+          "max-age=30, s-maxage=900, stale-while-revalidate=3.154e7",
+      },
+    }
+  );
+};
+
+export let headers: HeadersFunction = ({ loaderHeaders }) => {
+  return { "Cache-Control": loaderHeaders.get("Cache-Control") || "" };
 };
 
 export default function Index() {

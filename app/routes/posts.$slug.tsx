@@ -1,5 +1,5 @@
-import type { MetaFunction, LoaderFunction } from "remix";
-import { useRouteData } from "remix";
+import type { HeadersFunction, MetaFunction, LoaderFunction } from "remix";
+import { useRouteData, json } from "remix";
 import { getPostFromSlug } from "../utils/posts.server";
 import remark from "remark";
 import html from "remark-html";
@@ -16,7 +16,19 @@ export let loader: LoaderFunction = async ({ params }) => {
   let { slug } = params;
   let post = await getPostFromSlug(slug);
   let result = await remark().use(html).process(post.content);
-  return { content: result.toString(), matter: post.data };
+  return json(
+    { content: result.toString(), matter: post.data },
+    {
+      headers: {
+        "Cache-Control":
+          "max-age=60, s-maxage=86400, stale-while-revalidate=3.154e7",
+      },
+    }
+  );
+};
+
+export let headers: HeadersFunction = ({ loaderHeaders }) => {
+  return { "Cache-Control": loaderHeaders.get("Cache-Control") || "" };
 };
 
 export default function Post() {
