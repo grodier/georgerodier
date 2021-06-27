@@ -23,8 +23,7 @@ export let loader: LoaderFunction = async ({ params, request }) => {
     { content: result.toString(), matter: post.data },
     {
       headers: {
-        "Cache-Control":
-          "max-age=60, s-maxage=86400, stale-while-revalidate=3.154e7",
+        "Cache-Control": "s-maxage=300, stale-while-revalidate=3.154e7",
         Etag: post.etag || "",
       },
     }

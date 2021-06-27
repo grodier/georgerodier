@@ -10,21 +10,26 @@ export let meta: MetaFunction = () => {
   };
 };
 
-export let loader: LoaderFunction = async () => {
-  let posts = await getAllPosts();
+export let loader: LoaderFunction = async ({ request }) => {
+  let { files: posts, etag } = await getAllPosts(
+    request.headers.get("if-none-match") || ""
+  );
   return json(
     { posts },
     {
       headers: {
-        "Cache-Control":
-          "max-age=30, s-maxage=900, stale-while-revalidate=3.154e7",
+        "Cache-Control": "s-maxage=1, stale-while-revalidate=3.154e7",
+        Etag: etag,
       },
     }
   );
 };
 
 export let headers: HeadersFunction = ({ loaderHeaders }) => {
-  return { "Cache-Control": loaderHeaders.get("Cache-Control") || "" };
+  return {
+    "Cache-Control": loaderHeaders.get("Cache-Control") || "",
+    Etag: loaderHeaders.get("Etag") || "",
+  };
 };
 
 export default function Index() {
