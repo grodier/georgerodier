@@ -1,9 +1,10 @@
 import { getMdFileFromPath, getFilesAtPath } from "./github.server";
 import matter from "gray-matter";
 
-export async function getPostFromSlug(slug: string) {
-  const post = await getMdFileFromPath(`content/posts/${slug}.md`);
-  return matter(post as any);
+export async function getPostFromSlug(slug: string, matchTag: string) {
+  const post = await getMdFileFromPath(`content/posts/${slug}.md`, matchTag);
+  let postMatter = matter(post?.content as any);
+  return { ...postMatter, etag: post?.etag };
 }
 
 export async function getAllPosts() {

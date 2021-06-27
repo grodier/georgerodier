@@ -12,9 +12,12 @@ export let meta: MetaFunction = ({ data }) => {
   };
 };
 
-export let loader: LoaderFunction = async ({ params }) => {
+export let loader: LoaderFunction = async ({ params, request }) => {
   let { slug } = params;
-  let post = await getPostFromSlug(slug);
+  let post = await getPostFromSlug(
+    slug,
+    request.headers.get("if-none-match") || ""
+  );
   let result = await remark().use(html).process(post.content);
   return json(
     { content: result.toString(), matter: post.data },
@@ -22,13 +25,17 @@ export let loader: LoaderFunction = async ({ params }) => {
       headers: {
         "Cache-Control":
           "max-age=60, s-maxage=86400, stale-while-revalidate=3.154e7",
+        Etag: post.etag || "",
       },
     }
   );
 };
 
 export let headers: HeadersFunction = ({ loaderHeaders }) => {
-  return { "Cache-Control": loaderHeaders.get("Cache-Control") || "" };
+  return {
+    "Cache-Control": loaderHeaders.get("Cache-Control") || "",
+    Etag: loaderHeaders.get("Etag") || "",
+  };
 };
 
 export default function Post() {
