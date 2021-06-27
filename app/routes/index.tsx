@@ -35,9 +35,10 @@ export let headers: HeadersFunction = ({ loaderHeaders }) => {
 export default function Index() {
   let { posts } = useRouteData();
   return (
-    <div>
-      <h2>Welcome to the homepage of George Rodier!</h2>
-      <h3>Posts</h3>
+    <main className="max-w-lg mx-auto divide-y-2 divide-gray-200">
+      <div>
+        <h2>Welcome to the homepage of George Rodier!</h2>
+      </div>
       <ul>
         {posts.map((post: any) => (
           <li key={post.slug}>
@@ -46,6 +47,6 @@ export default function Index() {
           </li>
         ))}
       </ul>
-    </div>
+    </main>
   );
 }
