@@ -15,6 +15,9 @@ export let loader: LoaderFunction = async ({ request }) => {
   let { files: posts, etag } = await getAllPosts(
     request.headers.get("if-none-match") || ""
   );
+  console.log("POSTS1", posts);
+  posts.sort((a: any, b: any) => b.published - a.published);
+  console.log("POSTS2", posts);
   return json(
     { posts },
     {

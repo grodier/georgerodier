@@ -1,7 +1,7 @@
 ---
 title: "Preview Mode for Static Generation"
 description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus."
-published: "2020-03-16T05:35:07.322Z"
+published: "2021-03-17T05:35:07.322Z"
 author:
   name: George Rodier
 ---
