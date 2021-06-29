@@ -2,6 +2,7 @@ import type { MetaFunction, HeadersFunction, LoaderFunction } from "remix";
 import { useRouteData, json } from "remix";
 import { Link } from "react-router-dom";
 import { getAllPosts } from "../utils/posts.server";
+import DateFormatter from "../components/DateFormatter";
 
 export let meta: MetaFunction = () => {
   return {
@@ -50,6 +51,9 @@ export default function Index() {
             >
               {post.title}
             </Link>
+            <div>
+              - <DateFormatter dateString={post.published} />
+            </div>
             <p className="mt-3 text-base text-gray-500">{post.description}</p>
           </li>
         ))}
