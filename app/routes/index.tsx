@@ -38,7 +38,7 @@ export default function Index() {
   return (
     <main className="p-6 max-w-xl mx-auto mt-4 space-y-8">
       <div>
-        <h2 className="text-3xl font-bold text-gray-900 text-center">
+        <h2 className="text-4xl font-bold text-gray-900 text-center">
           Welcome to the homepage of George Rodier!
         </h2>
       </div>
