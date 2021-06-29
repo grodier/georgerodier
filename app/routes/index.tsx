@@ -35,7 +35,7 @@ export let headers: HeadersFunction = ({ loaderHeaders }) => {
 export default function Index() {
   let { posts } = useRouteData();
   return (
-    <main className="max-w-lg mx-auto mt-4 space-y-8">
+    <main className="p-6 max-w-xl mx-auto mt-4 space-y-8">
       <div>
         <h2 className="text-3xl font-bold text-gray-900 text-center">
           Welcome to the homepage of George Rodier!
@@ -46,7 +46,7 @@ export default function Index() {
           <li key={post.slug}>
             <Link
               to={`posts/${post.slug}`}
-              className="text-xl font-semibold text-blue-900 hover:underline hover:text-blue-800 focus:text-blue-800"
+              className="text-xl font-semibold text-green-900 hover:underline hover:text-green-800 focus:text-green-800"
             >
               {post.title}
             </Link>

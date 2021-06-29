@@ -42,9 +42,12 @@ export default function Post() {
   let { title } = matter;
 
   return (
-    <div>
-      <h1>{title}</h1>
-      <article dangerouslySetInnerHTML={{ __html: content }} />
-    </div>
+    <main className="p-6 max-w-2xl mx-auto mt-4 space-y-8">
+      <h1 className="text-2xl font-bold text-gray-900 text-center">{title}</h1>
+      <article
+        className="prose md:prose-lg prose-green"
+        dangerouslySetInnerHTML={{ __html: content }}
+      />
+    </main>
   );
 }
