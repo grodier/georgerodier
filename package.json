@@ -16,6 +16,7 @@
     "@remix-run/vercel": "^0.17.5",
     "@vercel/node": "^1.8.3",
     "aws-sdk": "^2.935.0",
+    "date-fns": "^2.22.1",
     "gray-matter": "^4.0.3",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",

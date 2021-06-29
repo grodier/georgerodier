@@ -23,7 +23,8 @@ export async function getFilesAtPath(path: string, matchTag: string) {
           const { data } = matter(post as any);
           return {
             slug: name.replace(/\.md$/, ""),
-            description: data.excerpt,
+            description: data.description,
+            published: data.published,
             title: data.title,
           };
         })

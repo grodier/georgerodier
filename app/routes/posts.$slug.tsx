@@ -3,12 +3,13 @@ import { useRouteData, json } from "remix";
 import { getPostFromSlug } from "../utils/posts.server";
 import remark from "remark";
 import html from "remark-html";
+import DateFormatter from "../components/DateFormatter";
 
 export let meta: MetaFunction = ({ data }) => {
   let { matter } = data;
   return {
     title: matter.title,
-    description: matter.excerpt || "",
+    description: matter.description || "",
   };
 };
 
@@ -39,11 +40,22 @@ export let headers: HeadersFunction = ({ loaderHeaders }) => {
 
 export default function Post() {
   let { content, matter } = useRouteData();
-  let { title } = matter;
+  let { title, published, author } = matter;
 
   return (
     <main className="p-6 max-w-2xl mx-auto mt-4 space-y-8">
-      <h1 className="text-2xl font-bold text-gray-900 text-center">{title}</h1>
+      <div>
+        <h1 className="text-5xl font-bold text-gray-900">{title}</h1>
+        <div className="mt-4">
+          <span className="text-xl font-medium italic text-green-900">
+            {author.name}
+          </span>{" "}
+          -{" "}
+          <span className="text-xl font-medium text-green-900">
+            <DateFormatter dateString={published} />
+          </span>
+        </div>
+      </div>
       <article
         className="prose md:prose-lg prose-green"
         dangerouslySetInnerHTML={{ __html: content }}
