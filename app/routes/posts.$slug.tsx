@@ -1,6 +1,6 @@
 import type { HeadersFunction, MetaFunction, LoaderFunction } from "remix";
 import { useRouteData, json } from "remix";
-import { getPostFromSlug } from "../utils/posts.server";
+import { getFile } from "../utils/s3.server";
 import remark from "remark";
 import html from "remark-html";
 import DateFormatter from "../components/DateFormatter";
@@ -15,17 +15,13 @@ export let meta: MetaFunction = ({ data }) => {
 
 export let loader: LoaderFunction = async ({ params, request }) => {
   let { slug } = params;
-  let post = await getPostFromSlug(
-    slug,
-    request.headers.get("if-none-match") || ""
-  );
+  let post = await getFile(`posts/${slug}.md`);
   let result = await remark().use(html).process(post.content);
   return json(
     { content: result.toString(), matter: post.data },
     {
       headers: {
         "Cache-Control": "s-maxage=300, stale-while-revalidate=3.154e7",
-        Etag: post.etag || "",
       },
     }
   );
@@ -48,7 +44,7 @@ export default function Post() {
         <h1 className="text-5xl font-bold text-gray-900">{title}</h1>
         <div className="mt-4">
           <span className="text-xl font-medium italic text-green-900">
-            {author.name}
+            {author}
           </span>{" "}
           -{" "}
           <span className="text-xl font-medium text-green-900">

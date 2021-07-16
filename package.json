@@ -24,7 +24,8 @@
     "remark": "^13.0.0",
     "remark-html": "^13.0.1",
     "remix": "^0.17.5",
-    "sort-by": "^1.2.0"
+    "sort-by": "^1.2.0",
+    "ulid": "^2.3.0"
   },
   "devDependencies": {
     "@remix-run/dev": "^0.17.5",

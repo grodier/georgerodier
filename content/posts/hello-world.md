@@ -2,8 +2,7 @@
 title: "Hello World"
 description: "My name is George. Welcome to my little corner of the internet."
 published: "2021-06-29T04:39:09.529Z"
-author:
-  name: George Rodier
+author: George Rodier
 ---
 
 I like the idea of science, experiementation, and change. We try new things, gather more information, and gradually evolve as a species. At one point in time I had a stagnant site, but now it's time to evolve.
